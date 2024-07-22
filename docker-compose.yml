@@ -1,0 +1,19 @@
+  #VAULT ----------------------------------------------------------------------------------------------
+version: '1.0'
+services:
+  redis-app:
+    container_name: redis
+    build:
+      context: .
+    ports:
+      - "6380:6380"
+
+  redis:
+    image: redis:latest
+    restart: always
+    ports:
+      - "6379:6379"
+    environment:
+      - REDIS_PASSWORD=my-password
+      - REDIS_PORT=6379
+      - REDIS_DATABASES=16
