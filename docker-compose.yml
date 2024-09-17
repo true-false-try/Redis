@@ -6,14 +6,15 @@ services:
     build:
       context: .
     ports:
-      - "6380:6380"
+      - "8099:8099"
+    env_file:
+      - .env
 
   redis:
     image: redis:latest
     restart: always
-    ports:
-      - "6379:6379"
     environment:
-      - REDIS_PASSWORD=my-password
-      - REDIS_PORT=6379
-      - REDIS_DATABASES=16
+      - REDIS_HOST=$${redis.host}
+      - REDIS_PORT=$${redis.port}
+      - REDIS_USERNAME=$${redis.username}
+      - REDIS_PASSWORD=$${redis.password}

@@ -25,6 +25,7 @@ public class RedisRepositoryImpl implements RedisRepository {
         try {
             Object jsonObject = jedisPooled.jsonGet(HASH_KEY_VAULT_AUTH.getName());
             String jsonString = objectMapper.writeValueAsString(jsonObject);
+            log.info("Find {} success: {}", HASH_KEY_VAULT_AUTH, jsonString);
             return objectMapper.readValue(jsonString, VaultAuthModel.class);
         } catch (Exception ex) {
             log.error(ex.getMessage());

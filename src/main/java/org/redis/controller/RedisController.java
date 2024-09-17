@@ -20,6 +20,7 @@ public class RedisController {
     @GetMapping("getVaultAuth")
     @ResponseBody
     public ResponseEntity<VaultAuthDto> getVaultAuth(){
+        log.info("Request is handling ...");
         VaultAuthDto vaultAuthDto = redisService.getVaultAuth();
         return ResponseEntity.ok(vaultAuthDto);
     }
